@@ -1,5 +1,6 @@
 package views;
 
+import ADReNA_API.NeuralNetwork.Backpropagation;
 import views.panes.SimulacaoPane;
 import views.panes.TreinamentoPane;
 
@@ -10,8 +11,11 @@ public class TelaPrincipal
         JFrame
 {
 
-    public TelaPrincipal()
+    private Backpropagation rede;
+
+    public TelaPrincipal( Backpropagation rede )
     {
+        this.rede = rede;
         setTitle("Tela Principal");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -24,6 +28,7 @@ public class TelaPrincipal
 
     private void initComponents()
     {
+        simulacaoPane = new SimulacaoPane( rede );
         jTabbedPane.addTab("Informações da RNA", treinamentoPane );
         jTabbedPane.addTab("Simulação", simulacaoPane );
 
@@ -32,6 +37,6 @@ public class TelaPrincipal
 
     private JTabbedPane jTabbedPane = new JTabbedPane();
     private TreinamentoPane treinamentoPane = new TreinamentoPane();
-    private SimulacaoPane simulacaoPane = new SimulacaoPane();
+    private SimulacaoPane simulacaoPane;
 
 }

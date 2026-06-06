@@ -33,6 +33,11 @@ public class ConversorPaciente
                 };
     }
 
+    public double[] converterEntrada( Paciente paciente )
+    {
+        return criarEntrada( paciente );
+    }
+
     private double[] criarSaida( Paciente paciente )
     {
         switch ( paciente.getRisco().toUpperCase() )

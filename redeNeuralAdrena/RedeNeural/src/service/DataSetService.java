@@ -7,21 +7,19 @@ import util.ConversorPaciente;
 
 import java.util.List;
 
-public class DataSetService {
+public class DataSetService
+{
+    public DataSet gerarDataSet( List<Paciente> pacientes ) throws Exception
+    {
+        DataSet dataSet = new DataSet( 13, 3 );
 
-    public DataSet gerarDataSet(List<Paciente> pacientes) throws Exception {
+        ConversorPaciente conversor = new ConversorPaciente();
 
-        DataSet dataSet = new DataSet(13, 3);
+        for ( Paciente paciente : pacientes )
+        {
+            DataSetObject objeto = conversor.converter( paciente );
 
-        ConversorPaciente conversor =
-                new ConversorPaciente();
-
-        for (Paciente paciente : pacientes) {
-
-            DataSetObject objeto =
-                    conversor.converter(paciente);
-
-            dataSet.Add(objeto);
+            dataSet.Add( objeto );
         }
 
         return dataSet;

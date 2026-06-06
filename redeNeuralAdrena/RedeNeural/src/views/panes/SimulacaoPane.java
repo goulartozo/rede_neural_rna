@@ -1,5 +1,9 @@
 package views.panes;
 
+import ADReNA_API.NeuralNetwork.Backpropagation;
+import model.Paciente;
+import util.ConversorPaciente;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,9 +11,71 @@ public class SimulacaoPane
     extends
         JPanel
 {
-    public SimulacaoPane()
+    private Backpropagation rede;
+
+    public SimulacaoPane( Backpropagation rede )
     {
+        this.rede = rede;
         initComponents();
+    }
+
+    private String obterClassificacao( double[] saida )
+    {
+        int indice = 0;
+
+        for ( int i = 1; i < saida.length; i++ )
+        {
+            if (saida[i] > saida[indice])
+            {
+                indice = i;
+            }
+        }
+
+        switch ( indice )
+        {
+            case 0:
+                return "BAIXO";
+            case 1:
+                return "MÉDIO";
+            case 2:
+                return "ALTO";
+            default:
+                return "DESCONHECIDO";
+        }
+    }
+
+    private void classificarPaciente() throws Exception
+    {
+        Paciente paciente = new Paciente();
+
+        paciente.setIdade( ( (Number) idadeSpinner.getValue() ).doubleValue() );
+        paciente.setSexo( rbMasculino.isSelected() ? "M" : "F" );
+        paciente.setProfSaude( rbProfSaudeSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setFebre( rbFebreSim.isSelected() ? "SIM" : "NÃO"  );
+        paciente.setTosse( rbTosseSim.isSelected() ? "SIM" : "NÃO"  );
+        paciente.setDorGarganta( rbDorGargantaSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setDispneia( rbDispneiaSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setdPulmonar( rbPulmonarSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setdCardiovascular( rbCardioSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setDiabetes( rbDiabetesSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setdRenalCron( rbRenalSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setImunidef( rbImunoSim.isSelected() ? "SIM" : "NÃO" );
+        paciente.setGestantePuerpera( rbGestanteSim.isSelected() ? "SIM" : "NÃO" );
+
+        double[] entrada = conversor.converterEntrada( paciente );
+
+        double[] saida = rede.Recognize( entrada );
+
+        String risco = obterClassificacao( saida );
+
+        resultadoLabel.setText( "Risco: " + risco );
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Classificação de Risco: " + risco,
+                "Resultado da Simulação",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 
     private void initComponents()
@@ -42,6 +108,18 @@ public class SimulacaoPane
         add( simularButton, gbc );
 
         configurarGrupos();
+
+        simularButton.addActionListener( event ->
+        {
+            try
+            {
+                classificarPaciente();
+            }
+            catch ( Exception e )
+            {
+                throw new RuntimeException( e );
+            }
+        } );
     }
 
     private void adicionarCampo( String texto, JComponent componente, int linha )
@@ -105,6 +183,10 @@ public class SimulacaoPane
 
         nao.setSelected( true );
     }
+
+    private final ConversorPaciente conversor = new ConversorPaciente();
+
+    private final JLabel resultadoLabel = new JLabel("Risco: -");
 
     private final GridBagConstraints gbc            = new GridBagConstraints();
     private final JSpinner           idadeSpinner   = new JSpinner( new SpinnerNumberModel( 18, 0, 120, 1 ) );
