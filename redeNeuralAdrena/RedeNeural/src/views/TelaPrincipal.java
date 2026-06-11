@@ -29,6 +29,7 @@ public class TelaPrincipal
     private void initComponents()
     {
         simulacaoPane = new SimulacaoPane( rede );
+        treinamentoPane = new TreinamentoPane( rede );
         jTabbedPane.addTab("Informações da RNA", treinamentoPane );
         jTabbedPane.addTab("Simulação", simulacaoPane );
 
@@ -36,7 +37,7 @@ public class TelaPrincipal
     }
 
     private JTabbedPane jTabbedPane = new JTabbedPane();
-    private TreinamentoPane treinamentoPane = new TreinamentoPane();
+    private TreinamentoPane treinamentoPane;
     private SimulacaoPane simulacaoPane;
 
 }

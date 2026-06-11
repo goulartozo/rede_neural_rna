@@ -6,6 +6,7 @@ import util.ConversorPaciente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class SimulacaoPane
     extends
@@ -72,7 +73,11 @@ public class SimulacaoPane
 
         JOptionPane.showMessageDialog(
                 this,
-                "Classificação de Risco: " + risco,
+                "Classificação de Risco: " + risco +
+                            "\nDados de entrada: " + Arrays.toString( entrada ) +
+                                "\nDados de saída: " + Arrays.toString(Arrays.stream( saida )
+                                                             .mapToObj(valor -> String.format("%.2f", valor))
+                                                             .toArray()),
                 "Resultado da Simulação",
                 JOptionPane.INFORMATION_MESSAGE
         );

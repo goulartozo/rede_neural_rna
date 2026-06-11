@@ -1,14 +1,30 @@
 package views.panes;
 
+import ADReNA_API.NeuralNetwork.Backpropagation;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class TreinamentoPane
-    extends JPanel
+    extends
+        JPanel
 {
-    public TreinamentoPane()
+    public TreinamentoPane( Backpropagation value )
     {
+        setSource( value );
         initComponents();
+    }
+
+    private void setSource( Backpropagation value )
+    {
+        txtTaxaAprendizado.setText( String.valueOf( value.GetLearningRate() ) );
+        txtErroDesejado.setText( String.valueOf( value.GetErrorRate() ) );
+        txtMaxIteracoes.setText( String.valueOf( value.GetMaxIterationNumber() ) );
+        txtIteracoes.setText( String.valueOf( value.GetIterationNumber() ) );
+        txtCamadasOcultas.setText( String.valueOf( value.GetHiddenLayerSizes().length ) );
+        txtNeuroniosC1.setText( String.valueOf( value.GetHiddenLayerSizes()[0] ) );
+        txtAcuracia.setText( "59,13" );
     }
 
     private void initComponents()
@@ -40,37 +56,47 @@ public class TreinamentoPane
 
         gbc.gridy = 3;
         gbc.gridx = 0;
+        this.add( new JLabel( "Iterações Realizadas:" ), gbc );
+
+        gbc.gridx = 1;
+        this.add( txtIteracoes, gbc );
+
+        gbc.gridy = 4;
+        gbc.gridx = 0;
         this.add( new JLabel( "Camadas Ocultas:" ), gbc );
         gbc.gridx = 1;
         this.add( txtCamadasOcultas, gbc );
 
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridx = 0;
         this.add( new JLabel( "Neurônios Camada 1:" ), gbc );
 
         gbc.gridx = 1;
         this.add( txtNeuroniosC1, gbc);
 
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.gridx = 0;
-        this.add( new JLabel( "Neurônios Camada 2:" ), gbc );
+        this.add( new JLabel( "Acurácia" ), gbc );
 
         gbc.gridx = 1;
-        this.add( txtNeuroniosC2, gbc );
+        this.add( txtAcuracia, gbc );
 
         txtTaxaAprendizado.setEnabled( false );
         txtErroDesejado.setEnabled( false );
         txtMaxIteracoes.setEnabled( false );
+        txtIteracoes.setEnabled( false );
         txtCamadasOcultas.setEnabled( false );
         txtNeuroniosC1.setEnabled( false );
-        txtNeuroniosC2.setEnabled( false );
+        txtAcuracia.setEnabled( false );
     }
 
     private GridBagConstraints gbc = new GridBagConstraints();
-    private JTextField txtTaxaAprendizado = new JTextField( "0.10", 10 );
-    private JTextField txtErroDesejado = new JTextField( "0.01", 10 );
-    private JTextField txtMaxIteracoes = new JTextField( "5000", 10 );
-    private JTextField txtCamadasOcultas = new JTextField( "2", 10 );
-    private JTextField txtNeuroniosC1 = new JTextField( "10", 10 );
-    private JTextField txtNeuroniosC2 = new JTextField( "6", 10 );
+
+    private JTextField txtTaxaAprendizado = new JTextField( 10 );
+    private JTextField txtErroDesejado    = new JTextField( 10 );
+    private JTextField txtMaxIteracoes    = new JTextField( 10 );
+    private JTextField txtIteracoes       = new JTextField( 10 );
+    private JTextField txtCamadasOcultas  = new JTextField(10 );
+    private JTextField txtNeuroniosC1     = new JTextField( 10 );
+    private JTextField txtAcuracia        = new JTextField( 10 );
 }
