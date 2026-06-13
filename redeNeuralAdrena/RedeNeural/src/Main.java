@@ -14,10 +14,9 @@ public class Main
     {
         PacienteRepository repository = new PacienteRepository();
 
-        List<Paciente> pacientes = repository.carregarPacientes( "src/dados/base_treinamento.csv" );
+        List<Paciente> pacientes = repository.carregarPacientes( "redeNeuralAdrena/RedeNeural/src/dados/base_treinamento.csv" );
 
-        DataSetService dataSetService =
-                new DataSetService();
+        DataSetService dataSetService = new DataSetService();
 
         DataSet dataSet = dataSetService.gerarDataSet( pacientes );
         

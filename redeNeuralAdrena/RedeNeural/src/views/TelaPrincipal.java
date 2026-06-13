@@ -16,7 +16,7 @@ public class TelaPrincipal
     public TelaPrincipal( Backpropagation rede )
     {
         this.rede = rede;
-        setTitle("Tela Principal");
+        setTitle("Rede Neural Artificial - Classificação de Risco COVID-19");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
         setVisible(true);

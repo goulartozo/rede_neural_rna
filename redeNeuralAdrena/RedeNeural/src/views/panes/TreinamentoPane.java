@@ -33,48 +33,70 @@ public class TreinamentoPane
         gbc.insets = new Insets( 5, 5, 5, 5 );
         gbc.anchor = GridBagConstraints.WEST;
 
+        JLabel titulo = new JLabel("Classificação de Risco COVID-19");
+        titulo.setFont(new Font("Arial", Font.BOLD, 24));
+
+        gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        this.add(titulo, gbc);
+
+        JLabel subTitulo = new JLabel("Rede Neural Artificial - Backpropagation");
+        subTitulo.setFont(new Font("Arial", Font.ITALIC, 18));
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        this.add(subTitulo, gbc);
+
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridwidth = 1;
+
+        gbc.gridy = 2;
         gbc.gridx = 0;
         this.add( new JLabel("Taxa de Aprendizado:" ), gbc );
 
         gbc.gridx = 1;
         this.add( txtTaxaAprendizado, gbc );
 
-        gbc.gridy = 1;
+        gbc.gridy = 3;
         gbc.gridx = 0;
         this.add( new JLabel( "Erro Desejado:" ), gbc );
 
         gbc.gridx = 1;
         this.add( txtErroDesejado, gbc );
 
-        gbc.gridy = 2;
+        gbc.gridy = 4;
         gbc.gridx = 0;
         this.add( new JLabel( "Máx. Iterações:" ), gbc );
 
         gbc.gridx = 1;
         this.add( txtMaxIteracoes, gbc );
 
-        gbc.gridy = 3;
+        gbc.gridy = 5;
         gbc.gridx = 0;
         this.add( new JLabel( "Iterações Realizadas:" ), gbc );
 
         gbc.gridx = 1;
         this.add( txtIteracoes, gbc );
 
-        gbc.gridy = 4;
+        gbc.gridy = 6;
         gbc.gridx = 0;
         this.add( new JLabel( "Camadas Ocultas:" ), gbc );
         gbc.gridx = 1;
         this.add( txtCamadasOcultas, gbc );
 
-        gbc.gridy = 5;
+        gbc.gridy = 7;
         gbc.gridx = 0;
-        this.add( new JLabel( "Neurônios Camada 1:" ), gbc );
+        this.add( new JLabel( "Neurônios" ), gbc );
 
         gbc.gridx = 1;
         this.add( txtNeuroniosC1, gbc);
 
-        gbc.gridy = 6;
+        gbc.gridy = 8;
         gbc.gridx = 0;
         this.add( new JLabel( "Acurácia" ), gbc );
 
