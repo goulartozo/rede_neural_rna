@@ -80,7 +80,7 @@ public class SimulacaoPane
                         "Médio: " + String.format("%.2f%%", saida[1] * 100) + "\n" +
                         "Alto: " + String.format("%.2f%%", saida[2] * 100) +
                         "\nDados de entrada: " + Arrays.toString( entrada ) +
-                        "\nNeurônios de saída: " + Arrays.toString(Arrays.stream( saida ).mapToObj(valor -> String.format("%.2f", valor) ).toArray() ),
+                        "\nNeurônios de saída: " + Arrays.toString(Arrays.stream( saida ).mapToObj(valor -> String.format("%.2f", valor) ).toArray() ) + " BAIXO - MÉDIO - ALTO",
                 "Resultado da Simulação",
                 JOptionPane.INFORMATION_MESSAGE
         );
