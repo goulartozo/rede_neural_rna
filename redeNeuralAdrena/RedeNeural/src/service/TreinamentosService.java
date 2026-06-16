@@ -9,7 +9,7 @@ public class TreinamentosService
     public Backpropagation treinar( DataSet dataSet ) throws Exception
     {
 
-        Backpropagation rede = new Backpropagation( 13, 3, new int[]{ 15, 8 } );
+        Backpropagation rede = new Backpropagation( 13, 3, new int[]{ 12 } );
 
         rede.SetLearningRate( 0.10 );
         rede.SetErrorRate( 0.05 );
