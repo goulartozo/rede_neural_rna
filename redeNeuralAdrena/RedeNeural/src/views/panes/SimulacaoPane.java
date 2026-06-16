@@ -73,11 +73,14 @@ public class SimulacaoPane
 
         JOptionPane.showMessageDialog(
                 this,
-                "Classificação de Risco: " + risco +
-                            "\nDados de entrada: " + Arrays.toString( entrada ) +
-                                "\nDados de saída: " + Arrays.toString(Arrays.stream( saida )
-                                                             .mapToObj(valor -> String.format("%.2f", valor))
-                                                             .toArray()),
+                "RESULTADO DA ANÁLISE\n\n" +
+                        "Classificação de Risco: " + risco + "\n\n" +
+                        "Confiança da Rede Neural:\n" +
+                        "Baixo: " + String.format("%.2f%%", saida[0] * 100) + "\n" +
+                        "Médio: " + String.format("%.2f%%", saida[1] * 100) + "\n" +
+                        "Alto: " + String.format("%.2f%%", saida[2] * 100) +
+                        "\nDados de entrada: " + Arrays.toString( entrada ) +
+                        "\nNeurônios de saída: " + Arrays.toString(Arrays.stream( saida ).mapToObj(valor -> String.format("%.2f", valor) ).toArray() ) + " BAIXO - MÉDIO - ALTO",
                 "Resultado da Simulação",
                 JOptionPane.INFORMATION_MESSAGE
         );
@@ -98,7 +101,7 @@ public class SimulacaoPane
         adicionarGrupo( "Febre:", criarPainel( rbFebreSim, rbFebreNao ), linha++ );
         adicionarGrupo( "Tosse:", criarPainel( rbTosseSim, rbTosseNao ), linha++ );
         adicionarGrupo( "Dor de Garganta:", criarPainel( rbDorGargantaSim, rbDorGargantaNao ), linha++ );
-        adicionarGrupo( "Dispneia:", criarPainel( rbDispneiaSim, rbDispneiaNao ), linha++ );
+        adicionarGrupo( "Dispneia (Falta de ar):", criarPainel( rbDispneiaSim, rbDispneiaNao ), linha++ );
         adicionarGrupo( "Doença Pulmonar:", criarPainel( rbPulmonarSim, rbPulmonarNao ), linha++ );
         adicionarGrupo( "Doença Cardiovascular:", criarPainel( rbCardioSim, rbCardioNao ), linha++ );
         adicionarGrupo( "Diabetes:", criarPainel( rbDiabetesSim, rbDiabetesNao ), linha++ );
