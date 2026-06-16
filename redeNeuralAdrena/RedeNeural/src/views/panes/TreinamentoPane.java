@@ -1,6 +1,7 @@
 package views.panes;
 
 import ADReNA_API.NeuralNetwork.Backpropagation;
+import model.ResultadoTestes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +11,13 @@ public class TreinamentoPane
     extends
         JPanel
 {
-    public TreinamentoPane( Backpropagation value )
+    public TreinamentoPane(Backpropagation value, ResultadoTestes testes )
     {
-        setSource( value );
+        setSource( value, testes );
         initComponents();
     }
 
-    private void setSource( Backpropagation value )
+    private void setSource( Backpropagation value, ResultadoTestes valueTestes )
     {
         txtTaxaAprendizado.setText( String.valueOf( value.GetLearningRate() ) );
         txtErroDesejado.setText( String.valueOf( value.GetErrorRate() ) );
@@ -24,7 +25,7 @@ public class TreinamentoPane
         txtIteracoes.setText( String.valueOf( value.GetIterationNumber() ) );
         txtCamadasOcultas.setText( String.valueOf( value.GetHiddenLayerSizes().length ) );
         txtNeuroniosC1.setText( String.valueOf( value.GetHiddenLayerSizes()[0] ) );
-        txtAcuracia.setText( "59,13" );
+        txtAcuracia.setText( String.valueOf( String.format( "%.2f", valueTestes.getAcuracia() ) ) );
     }
 
     private void initComponents()
